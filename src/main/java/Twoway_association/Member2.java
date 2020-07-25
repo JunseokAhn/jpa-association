@@ -9,6 +9,8 @@ public class Member2 {
     @Column(name = "MEMBER_ID")
     private Long id;
 
+//  처음 매핑할떄는 단방향매핑으로만 매핑할것. 양방향은 실무에서 필요해지는경우가있는데
+//  이경우 테이블에 영향을 주지않으므로 하다가 추가해도된다.
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team2 team;
@@ -30,6 +32,8 @@ public class Member2 {
 
     public void setTeam(Team2 team) {
         this.team = team;
+//      연관관계 편의 메소드
+        team.getMembers().add(this);
     }
 
     public String getUserName() {
